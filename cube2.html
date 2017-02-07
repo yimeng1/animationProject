@@ -1,0 +1,120 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="msapplication-tap-highlight" content="no">
+    	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    	<style>
+    		.container { display: inline-block; width: 200px; height: 200px;position: relative; margin: 180px; 
+    			transform: translate3d(0,500px,0);
+    		}
+    		.cube {
+    			transform: rotateX(-10deg) rotateY(-24deg);
+				transform-style: preserve-3d;
+				-webkit-animation-name: Dice;
+				-webkit-animation-duration: 2s;
+				-webkit-animation-iteration-count: infinite;
+    		}
+    		.container {
+    			transform-style: preserve-3d;
+				-webkit-animation-name: Drop;
+				-webkit-animation-duration: 1s;
+				-webkit-animation-iteration-count: 1;
+    		}
+    		.cube, .cube .face {
+				position: absolute; width: 100%; height: 100%; left: 0; top: 0;
+    		}
+			.cube .face {
+				line-height: 200px;
+				text-align: center;
+				color: black;
+				border: 1px solid #7d689d;
+				transform-style: preserve-3d;
+			}
+			.cube .face-front {
+				transform:rotateX(0deg) translateZ(100px); 
+				background-color: rgba(255,0,0,1);
+			}
+			.cube .face-back {
+				transform:rotateX(-180deg) translateZ(100px); 
+				background-color: rgba(0,0,255,1);
+			}
+			.cube .face-top {
+				transform:rotateX(90deg) translateZ(100px); 
+				background-color: rgba(255,255,0,1);
+			}
+			.cube .face-bottom {
+				transform:rotateX(-90deg) translateZ(100px); 
+				background-color: rgba(0,255,0,1);
+			}
+			.cube .face-left {
+				transform: rotateY(-90deg) translateZ(100px); 
+				background-color: rgba(255,255,255,1);
+			}
+			.cube .face-right {
+				transform: rotateY(90deg) translateZ(100px); 
+				background-color: rgba(0,255,255,1);
+			}
+			@-webkit-keyframes  Dice {
+				0% {
+					transform: rotate3d(1,1,1,10deg);
+				}
+				25% {
+					transform: rotate3d(1,1,1,90deg);
+				}
+				50% {
+					transform: rotate3d(1,1,1,180deg);
+				}
+				75% {
+					transform: rotate3d(1,1,1,240deg);
+				}
+				100% {
+					transform: rotate3d(1,1,1,360deg);
+				}
+			}
+			@-webkit-keyframes Drop {
+				0% {
+					transform: translate3d(0,0,0);
+				}
+				25% {
+					transform: translate3d(0,200px,0);
+				}
+				50% {
+					transform: translate3d(0,400px,0);
+				}
+				75% {
+					transform: translate3d(0,500px,0);
+				}
+				100% {
+					transform: translate3d(0,500px,0);
+				}
+			}
+    	</style>
+	</head>
+	<body>
+		<div class='container'>  
+		  <div class='cube'>  
+		    <div class='face face-front'>1</div>  
+		    <div class='face face-back'>2</div>  
+		    <div class='face face-top'>3</div>  
+		    <div class='face face-bottom'>4</div>  
+		    <div class='face face-left'>5</div>
+		    <div class='face face-right'>6</div>
+		  </div>  
+		</div>  
+	</body>
+	<script type="text/javascript">
+	var x = 0;
+	var y = 0;
+	var z = 0;
+	function rotate() {
+		setInterval(function() {
+			x = (x+3)%360;
+			y = (y+2)%360;
+			z = (z+1)%360;
+			// $('.cube').css('transform', 'rotateX(' + x + 'deg) rotateY(' + y + 'deg) rotateZ(' + z + 'deg)');
+			document.querySelector('.cube').style.transform = 'rotateX(' + x + 'deg) rotateY(' + y + 'deg) rotateZ(' + z + 'deg)';
+		},20);
+	}
+	// rotate();
+	</script>
+</html>
